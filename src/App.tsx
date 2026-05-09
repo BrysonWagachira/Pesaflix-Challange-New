@@ -126,6 +126,40 @@ export default function App() {
       </div>
 
       <div className="max-w-3xl mx-auto px-5 pb-20">
+        {/* ... (previous sections) */}
+
+        {/* Floating Social Links */}
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-40 sm:bottom-auto sm:top-1/2 sm:right-6 sm:left-auto sm:translate-x-0 sm:-translate-y-1/2 sm:flex-col">
+          <motion.a 
+            whileHover={{ scale: 1.1, x: -5 }}
+            whileTap={{ scale: 0.9 }}
+            href="https://www.instagram.com/pesaflix_kenya?igsh=MXc0NjN2N3h4b205dg==" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 bg-card-bg/80 backdrop-blur-md border border-yellow-gold/30 hover:border-yellow-gold p-3 rounded-full sm:rounded-2xl transition-all group shadow-2xl shadow-yellow-gold/10"
+          >
+            <Instagram className="w-6 h-6 sm:w-7 sm:h-7 text-yellow-gold group-hover:scale-110 transition-transform" />
+            <div className="hidden sm:block">
+              <p className="text-[8px] uppercase tracking-widest text-muted-text">Instagram</p>
+              <p className="font-bebas text-sm">Follow</p>
+            </div>
+          </motion.a>
+          <motion.a 
+            whileHover={{ scale: 1.1, x: -5 }}
+            whileTap={{ scale: 0.9 }}
+            href="https://www.tiktok.com/@pesaflixke?_r=1&_t=ZS-96E0W8PszLh" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 bg-card-bg/80 backdrop-blur-md border border-yellow-gold/30 hover:border-yellow-gold p-3 rounded-full sm:rounded-2xl transition-all group shadow-2xl shadow-yellow-gold/10"
+          >
+            <Music2 className="w-6 h-6 sm:w-7 sm:h-7 text-yellow-gold group-hover:scale-110 transition-transform" />
+            <div className="hidden sm:block">
+              <p className="text-[8px] uppercase tracking-widest text-muted-text">TikTok</p>
+              <p className="font-bebas text-sm">Join Us</p>
+            </div>
+          </motion.a>
+        </div>
+
         {/* Downloads */}
         <SectionHeader title="Downloads" />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -238,16 +272,8 @@ export default function App() {
           </p>
         </motion.div>
         <p className="text-muted-text text-sm">
-          Powered by <a href="#" className="font-bold text-yellow-gold hover:underline mx-1">PESAFLIX</a> · Unleash Your Sound
+          Powered by <a href="https://www.pesaflix.com" target="_blank" rel="noopener noreferrer" className="font-bold text-yellow-gold hover:underline mx-1">PESAFLIX</a> · Unleash Your Sound
         </p>
-        <div className="flex justify-center flex-wrap gap-6 mt-8">
-          <a href="#" className="text-muted-text hover:text-white transition-colors flex items-center gap-2 text-sm">
-            <Instagram size={18} className="text-yellow-gold" /> @pesaflix_kenya
-          </a>
-          <a href="#" className="text-muted-text hover:text-white transition-colors flex items-center gap-2 text-sm">
-            <Music2 size={18} className="text-yellow-gold" /> @pesaflix_ke
-          </a>
-        </div>
       </footer>
     </div>
   );
