@@ -3,10 +3,44 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { Download, Music, Image as ImageIcon, CheckCircle2, Instagram, Music2, Trophy, Medal } from "lucide-react";
 
 export default function App() {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    // Attempt to play audio on mount
+    // Note: Browser policy usually requires a user interaction first.
+    const playAudio = async () => {
+      if (audioRef.current) {
+        try {
+          await audioRef.current.play();
+        } catch (err) {
+          console.log("Autoplay blocked by browser. Music will start after user interaction.");
+        }
+      }
+    };
+
+    playAudio();
+
+    // Fallback: Start audio on the first click anywhere on the document
+    const handleFirstInteraction = () => {
+      playAudio();
+      document.removeEventListener("click", handleFirstInteraction);
+      document.removeEventListener("touchstart", handleFirstInteraction);
+    };
+
+    document.addEventListener("click", handleFirstInteraction);
+    document.addEventListener("touchstart", handleFirstInteraction);
+
+    return () => {
+      document.removeEventListener("click", handleFirstInteraction);
+      document.removeEventListener("touchstart", handleFirstInteraction);
+    };
+  }, []);
+
   const steps = [
     { num: 1, title: "Record a 1-Minute Freestyle", desc: "Download the beat above and rap your original freestyle over it." },
     { num: 2, title: "Use the Official Pesaflix Instrumental", desc: "The beat above is the only official track for this challenge." },
@@ -80,6 +114,7 @@ export default function App() {
           <span className="font-bebas tracking-widest text-yellow-gold whitespace-nowrap">🎵 Now Playing</span>
         </div>
         <audio 
+          ref={audioRef}
           controls 
           autoPlay 
           loop
@@ -100,6 +135,7 @@ export default function App() {
             subtitle="Riccobeatz & Mr 808 · Official Instrumental"
             btnText="Download Beat (WAV)"
             href="/Pesaflix_Challenge_instrumental_5__fast_-__Riccobeatz_Mr_808__.wav"
+            downloadName="Pesaflix_Challenge_Instrumental.wav"
           />
           <DownloadCard 
             icon={<ImageIcon className="w-10 h-10 text-yellow-gold" />}
@@ -107,6 +143,7 @@ export default function App() {
             subtitle="Official Pesaflix Music Challenge Banner"
             btnText="Download Poster (JPG)"
             href="/lv_0_20260503113030_jpg.jpeg"
+            downloadName="Pesaflix_Challenge_Poster.jpg"
           />
         </div>
 
@@ -227,7 +264,7 @@ function SectionHeader({ title }: { title: string }) {
   );
 }
 
-function DownloadCard({ icon, title, subtitle, btnText, href }: { icon: any, title: string, subtitle: string, btnText: string, href: string }) {
+function DownloadCard({ icon, title, subtitle, btnText, href, downloadName }: { icon: any, title: string, subtitle: string, btnText: string, href: string, downloadName?: string }) {
   return (
     <div className="relative group bg-card-bg border border-zinc-800 rounded-2xl p-6 flex flex-col items-center text-center gap-4 overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-linear-to-r before:from-yellow-gold before:via-orange-500 before:to-yellow-gold">
       <div>{icon}</div>
@@ -237,6 +274,7 @@ function DownloadCard({ icon, title, subtitle, btnText, href }: { icon: any, tit
       </div>
       <a 
         href={href}
+        download={downloadName}
         className="animate-glow flex items-center justify-center gap-2 bg-yellow-gold text-black font-bebas text-lg tracking-widest py-3 px-6 rounded-lg w-full transition-all hover:bg-yellow-400 hover:scale-[1.02] active:scale-95"
       >
         <Download className="w-5 h-5 stroke-[3]" />
