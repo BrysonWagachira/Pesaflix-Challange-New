@@ -11,33 +11,34 @@ export default function App() {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    // Attempt to play audio on mount
-    // Note: Browser policy usually requires a user interaction first.
+    const audio = audioRef.current;
+    if (!audio) return;
+
     const playAudio = async () => {
-      if (audioRef.current) {
-        try {
-          await audioRef.current.play();
-        } catch (err) {
-          console.log("Autoplay blocked by browser. Music will start after user interaction.");
-        }
+      try {
+        await audio.play();
+        console.log("Audio playing successfully");
+      } catch (err) {
+        console.log("Autoplay blocked, waiting for interaction...");
       }
     };
 
+    // Try to play immediately
     playAudio();
 
-    // Fallback: Start audio on the first click anywhere on the document
-    const handleFirstInteraction = () => {
+    // Interaction triggers to bypass browser blocks
+    const handleInteraction = () => {
       playAudio();
-      document.removeEventListener("click", handleFirstInteraction);
-      document.removeEventListener("touchstart", handleFirstInteraction);
+      window.removeEventListener("pointerdown", handleInteraction);
+      window.removeEventListener("keydown", handleInteraction);
     };
 
-    document.addEventListener("click", handleFirstInteraction);
-    document.addEventListener("touchstart", handleFirstInteraction);
+    window.addEventListener("pointerdown", handleInteraction);
+    window.addEventListener("keydown", handleInteraction);
 
     return () => {
-      document.removeEventListener("click", handleFirstInteraction);
-      document.removeEventListener("touchstart", handleFirstInteraction);
+      window.removeEventListener("pointerdown", handleInteraction);
+      window.removeEventListener("keydown", handleInteraction);
     };
   }, []);
 
@@ -73,6 +74,7 @@ export default function App() {
           transition={{ duration: 1.2 }}
           src="/lv_0_20260503113030_jpg.jpeg" 
           alt="Pesaflix Music Challenge Poster"
+          loading="eager"
           className="w-full max-w-5xl object-cover object-top"
         />
         <div className="absolute inset-0 bg-linear-to-t from-dark-bg via-transparent to-transparent opacity-60" />
@@ -118,6 +120,7 @@ export default function App() {
           controls 
           autoPlay 
           loop
+          preload="auto"
           className="flex-1 w-full h-10 accent-yellow-gold"
           src="/Pesaflix_Challenge_instrumental_5__fast_-__Riccobeatz_Mr_808__.wav"
         >
