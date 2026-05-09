@@ -71,7 +71,7 @@ export default function App() {
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2 }}
-          src="/poster.jpg" 
+          src="/poster.png" 
           alt="Pesaflix Music Challenge Poster"
           className="w-full max-w-5xl object-cover object-top"
         />
@@ -175,9 +175,9 @@ export default function App() {
             icon={<ImageIcon className="w-10 h-10 text-yellow-gold" />}
             title="Challenge Poster"
             subtitle="Official Pesaflix Music Challenge Banner"
-            btnText="Download Poster (JPG)"
-            href="/poster.jpg"
-            downloadName="Pesaflix_Challenge_Poster.jpg"
+            btnText="Download Poster (PNG)"
+            href="/poster.png"
+            downloadName="Pesaflix_Challenge_Poster.png"
           />
         </div>
 
