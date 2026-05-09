@@ -71,7 +71,7 @@ export default function App() {
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2 }}
-          src="/poster.png" 
+          src="/lv_0_20260503113030_jpg.jpeg" 
           alt="Pesaflix Music Challenge Poster"
           className="w-full max-w-5xl object-cover object-top"
         />
@@ -119,7 +119,7 @@ export default function App() {
           autoPlay 
           loop
           className="flex-1 w-full h-10 accent-yellow-gold"
-          src="/instrumental.wav"
+          src="/Pesaflix_Challenge_instrumental_5__fast_-__Riccobeatz_Mr_808__.wav"
         >
           Your browser does not support audio.
         </audio>
@@ -168,16 +168,16 @@ export default function App() {
             title="Challenge Beat"
             subtitle="Riccobeatz & Mr 808 · Official Instrumental"
             btnText="Download Beat (WAV)"
-            href="/instrumental.wav"
+            href="/Pesaflix_Challenge_instrumental_5__fast_-__Riccobeatz_Mr_808__.wav"
             downloadName="Pesaflix_Challenge_Instrumental.wav"
           />
           <DownloadCard 
             icon={<ImageIcon className="w-10 h-10 text-yellow-gold" />}
             title="Challenge Poster"
             subtitle="Official Pesaflix Music Challenge Banner"
-            btnText="Download Poster (PNG)"
-            href="/poster.png"
-            downloadName="Pesaflix_Challenge_Poster.png"
+            btnText="Download Poster (JPG)"
+            href="/lv_0_20260503113030_jpg.jpeg"
+            downloadName="Pesaflix_Challenge_Poster.jpg"
           />
         </div>
 
