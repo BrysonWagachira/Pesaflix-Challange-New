@@ -29,23 +29,29 @@ export default function App() {
     // Interaction triggers to bypass browser blocks
     const handleInteraction = () => {
       playAudio();
-      // Remove all listeners once audio starts
+      // Remove all listeners once audio starts successfully or is attempted
       window.removeEventListener("pointerdown", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
       window.removeEventListener("mousedown", handleInteraction);
       window.removeEventListener("keydown", handleInteraction);
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("touchmove", handleInteraction);
     };
 
     window.addEventListener("pointerdown", handleInteraction);
     window.addEventListener("touchstart", handleInteraction);
     window.addEventListener("mousedown", handleInteraction);
     window.addEventListener("keydown", handleInteraction);
+    window.addEventListener("scroll", handleInteraction);
+    window.addEventListener("touchmove", handleInteraction);
 
     return () => {
       window.removeEventListener("pointerdown", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
       window.removeEventListener("mousedown", handleInteraction);
       window.removeEventListener("keydown", handleInteraction);
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("touchmove", handleInteraction);
     };
   }, []);
 
