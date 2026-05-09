@@ -68,14 +68,26 @@ export default function App() {
       {/* Hero Poster */}
       <section className="relative w-full max-h-[80vh] overflow-hidden flex justify-center bg-black">
         <motion.img 
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1.2 }}
-          src="/lv_0_20260503113030_jpg.jpeg" 
+          src="/poster.jpg" 
           alt="Pesaflix Music Challenge Poster"
           className="w-full max-w-5xl object-cover object-top"
         />
         <div className="absolute inset-0 bg-linear-to-t from-dark-bg via-transparent to-transparent opacity-60" />
+        
+        {/* Main Logo Overlay */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-xs px-10">
+          <motion.img
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.3, type: "spring" }}
+            src="/logo.png"
+            alt="Pesaflix Logo"
+            className="w-full h-auto drop-shadow-2xl"
+          />
+        </div>
         
         {/* Floating Taglines */}
         <div className="absolute top-8 left-8 hidden lg:block">
@@ -113,16 +125,16 @@ export default function App() {
           <Music className="text-yellow-gold h-5 w-5 animate-pulse" />
           <span className="font-bebas tracking-widest text-yellow-gold whitespace-nowrap">🎵 Now Playing</span>
         </div>
-        <audio 
-          ref={audioRef}
-          controls 
-          autoPlay 
-          loop
-          className="flex-1 w-full h-10 accent-yellow-gold"
-          src="/Pesaflix_Challenge_instrumental_5__fast_-__Riccobeatz_Mr_808__.wav"
-        >
-          Your browser does not support audio.
-        </audio>
+          <audio 
+            ref={audioRef}
+            controls 
+            autoPlay 
+            loop
+            className="flex-1 w-full h-10 accent-yellow-gold"
+            src="/beat.wav"
+          >
+            Your browser does not support audio.
+          </audio>
       </div>
 
       <div className="max-w-3xl mx-auto px-5 pb-20">
@@ -168,7 +180,7 @@ export default function App() {
             title="Challenge Beat"
             subtitle="Riccobeatz & Mr 808 · Official Instrumental"
             btnText="Download Beat (WAV)"
-            href="/Pesaflix_Challenge_instrumental_5__fast_-__Riccobeatz_Mr_808__.wav"
+            href="/beat.wav"
             downloadName="Pesaflix_Challenge_Instrumental.wav"
           />
           <DownloadCard 
@@ -176,7 +188,7 @@ export default function App() {
             title="Challenge Poster"
             subtitle="Official Pesaflix Music Challenge Banner"
             btnText="Download Poster (JPG)"
-            href="/lv_0_20260503113030_jpg.jpeg"
+            href="/poster.jpg"
             downloadName="Pesaflix_Challenge_Poster.jpg"
           />
         </div>
