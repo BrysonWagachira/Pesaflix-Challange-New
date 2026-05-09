@@ -82,6 +82,7 @@ export default function App() {
         <audio 
           controls 
           autoPlay 
+          loop
           className="flex-1 w-full h-10 accent-yellow-gold"
           src="/Pesaflix_Challenge_instrumental_5__fast_-__Riccobeatz_Mr_808__.wav"
         >
