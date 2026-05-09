@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-bebas: "Bebas Neue", cursive;
+  
+  --color-yellow-gold: #FFD700;
+  --color-dark-bg: #0a0a0a;
+  --color-card-bg: #181818;
+  --color-muted-text: #aaa;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-white font-sans;
+  }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 4px 18px rgba(255, 215, 0, 0.25); }
+  50% { box-shadow: 0 4px 34px rgba(255, 215, 0, 0.5); }
+}
+
+.animate-glow {
+  animation: glow 2.5s ease-in-out infinite;
+}
